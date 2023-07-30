@@ -5,9 +5,6 @@ import tensorflow as tf
 import glob
 from PIL import Image
 
-from huggingface_hub import hf_hub_url, cached_download
-import json
-
 
 def get_labels(path, num_img):
   X = []
@@ -193,7 +190,9 @@ def calculate_metrics(results_ds,id_label = None, num_classes = 19, verbose = Fa
     recall_class['Mean'] = recall
     F1_class['Mean'] = F1
 
-    return iou_class, precision_class, recall_class, F1_class
+    results = pd.DataFrame([iou_class, precision_class, recall_class, F1_class], index = ['IoU', 'Precision', 'Recall', 'F1']).T
+
+    return results
 
 
 def show_loss_history(loss, val_loss, file_name = 'loss_cityscapes_GTA_enocder_congelado', save = False):
@@ -228,7 +227,7 @@ def show_results(img_ds, mask_truth_ds, predicted_mask_ds, size = (12,7), alpha 
         plt.subplot(511)
         plt.imshow(np.concatenate((img[0].numpy(), np.zeros((526,3,3)), map_colors_combined(img = img[0], lab = mask_truth[0],alpha = alpha, dic_color = dic_color), np.zeros((526,3,3)),map_colors_combined(img = img[0], lab = predicted_mask[0], alpha = alpha, dic_color = dic_color)), axis = 1))
         plt.axis("off")
-        plt.title("Imagen   Máscara verdadera   Máscara predicha")
+        plt.title("               Imagen                     Máscara verdadera            Máscara predicha", loc= 'left')
         plt.subplot(512)
         plt.imshow(np.concatenate((img[1].numpy(), np.zeros((526,3,3)), map_colors_combined(img = img[1], lab = mask_truth[1], alpha = alpha, dic_color = dic_color), np.zeros((526,3,3)), map_colors_combined(img = img[1], lab = predicted_mask[1], alpha = alpha, dic_color = dic_color)), axis = 1))
         plt.axis("off")
