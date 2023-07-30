@@ -1,0 +1,2 @@
+model_checkpoint_path: "meanIoU_loss"
+all_model_checkpoint_paths: "meanIoU_loss"
