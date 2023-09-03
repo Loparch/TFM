@@ -1,4 +1,6 @@
 *.pyc
-*.jpg
-*.png
+Resultados/mapillary_img/validation/labels/*.png
+Resultados/mapillary_img/validation/images/*.jpg
+Entrenamientos/cityscapes/images/*.png
+Entrenamientos/cityscapes/labels/*.png
 *.npy
