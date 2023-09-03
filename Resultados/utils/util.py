@@ -21,7 +21,6 @@ def get_labels(path, num_img):
 
 def map_colors(img_lab, color_dic):
     img_lab = np.array(img_lab)
-    # Convierte la imagen a un tensor de tipo entero
     img_color = np.empty((img_lab.shape[0], img_lab.shape[1], 3))
 
     for i in range(img_color.shape[0]):
@@ -33,7 +32,6 @@ def map_colors(img_lab, color_dic):
     return img_color/255
 
 def map_fn(image, label_to_color): #map from rgb to id
-    # Convierte la imagen a un tensor de tipo entero
     image = tf.cast(image, tf.int32)
     # Crea un tensor de la misma forma que la imagen pero con valores de etiquetas
     label = tf.zeros_like(image[:,:,:,0], dtype=tf.int32)
@@ -49,8 +47,7 @@ def map_fn(image, label_to_color): #map from rgb to id
 
 # loss function
 def mean_IoU_loss(y_true, y_pred):
-    # upsample logits to the images' original size
-    # `labels` is of shape (batch_size, height, width)
+    
     label_interp_shape =  y_true.shape[1:]
     upsampled_logits = tf.image.resize(tf.transpose(y_pred, perm = [0, 2, 3, 1]) , size=label_interp_shape, method="bilinear")
     upsampled_logits_norm = tf.keras.layers.Softmax(axis = -1)(upsampled_logits)
@@ -118,7 +115,7 @@ def show_image_and_mask(dataset, color_map = False, dic_colors = None):
         plt.axis("off")
 
 def normalize(image):
-    image = tf.image.convert_image_dtype(image, tf.float32)  # Convierte a tipo float32
+    image = tf.image.convert_image_dtype(image, tf.float32)  
     image = tf.image.per_image_standardization(tf.image.resize(image, size = [512, 512], method = 'bilinear'))  # Normalización por desviación estándar
     image = tf.transpose(image, perm = [0, 3, 1, 2])
     return image

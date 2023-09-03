@@ -1,8 +1,9 @@
 # Transformers en segmentación de imágenes: rendimiento en el mundo real tras entrenamiento en imágenes sintéticas
 
-Trabajo de fin de máster en el que se estudia la posibilidad de incluir imágenes sintéticas en el entrenamiento de un modelo de segmentación semántica de imágenes bastado en la arquitectura Transformer (modelo *Segformer*).
+Trabajo de fin de máster en el que se estudia la posibilidad de incluir imágenes sintéticas en el entrenamiento de un modelo de segmentación semántica basado en la arquitectura Transformer (modelo *Segformer*).
 
 Autor: Lorenzo Pardo Chico
+
 Turores: Valero Laparra Pérez-Muelas y Pablo Hernández Cámara
 
 ## Objetivos
@@ -32,7 +33,7 @@ Para cada una de las categorías por seprado:
 
 ![](/Resultados/Comparacion_metricas.png "Resultados obtenidos las diferentes versiones del modelo Segformer MiT-B0")
 
-Si mostramos la máscara de segmentación de unas cuantas imágenes:
+Si mostramos la máscara de segmentación de unas cuantas imágenes para cada uno de los modelos:
 
 ![](/Resultados/img_comparison.png )
 
